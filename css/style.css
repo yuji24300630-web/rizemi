@@ -13,9 +13,6 @@ body{
 }
 a {
     text-decoration: none;
-    
-    /* 追加：すべてのリンクの色変化を0.3秒かけてフワッとさせる */
-    transition: all 2.0s ease;
 }
 img {
     max-width: 100%;
@@ -152,7 +149,7 @@ body.r5-sp {
     color: #cecece;
 }
 .head-sp a:hover {
-    color: #C0A313;
+    color: #b8d200;
 }
 .main-nav-sp {
     justify-content: center;
