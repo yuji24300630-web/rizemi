@@ -13,6 +13,9 @@ body{
 }
 a {
     text-decoration: none;
+    
+    /* 追加：すべてのリンクの色変化を0.3秒かけてフワッとさせる */
+    transition: all 0.3s ease;
 }
 img {
     max-width: 100%;
