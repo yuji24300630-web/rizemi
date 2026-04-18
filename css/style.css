@@ -149,7 +149,7 @@ body.r5-sp {
     color: #cecece;
 }
 .head-sp a:hover {
-    color: #b8d200;
+    color: #2A91D3;
 }
 .main-nav-sp {
     justify-content: center;
@@ -179,7 +179,7 @@ body.r5-sp {
     color: #cecece;
 }
 .main-nav-sp a:hover {
-    color: #C0A313;
+    color: #2A91D3;
 }
 .main-nav-sp.menu_active {
     right: 0;
@@ -467,7 +467,7 @@ body.r5-sp {
     color: black;
 }
 .head a:hover {
-    color: #C0A313;
+    color: #2A91D3;
 }
 .logo {
     height: 2em;
@@ -571,7 +571,7 @@ body.r5-sp {
     color: black;
 }
 .main-nav a:hover {
-    color: #C0A313;
+    color: #2A91D3;
 }
 .main-nav.menu_active {
     right: 0;
@@ -867,6 +867,7 @@ body.r5-sp {
 .sns img {
     height: 1.5em;
     vertical-align: middle;
+    margin-left: 0.8rem;
 }
 .copyright {
     background-color: #596144;
