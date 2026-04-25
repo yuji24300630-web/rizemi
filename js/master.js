@@ -53,8 +53,8 @@ fetch(sheetUrl)
 
                 const cardHtml = `
                 <div class="zemi-card-sp" style="margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid #555; border-radius: 8px; padding: 1rem;">
-                    <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff; border-left: 4px solid #91b825; padding-left: 0.8rem;">
-                        ${index < 3 ? '👑 ' : ''}${fieldName}
+                    <h3 style="margin: 0.8rem 0; font-size: 1.1rem; color: #fff; border-left: 4px solid #91b825; padding-left: 0.8rem;">
+                        ${fieldName}
                     </h3>
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                         <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
