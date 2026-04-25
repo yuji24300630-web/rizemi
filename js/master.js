@@ -26,7 +26,7 @@ function menuToggle() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    const sheetUrl = https://docs.google.com/spreadsheets/d/e/2PACX-1vQNO7w4N3S8LqTHigAnUygflNpqnMZKXSD-azc2o8W-m4R4_Slp4VP6E6y1a03zcXugMeITlDyUBdEw/pub?gid=972364105&single=true&output=csv;
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNO7w4N3S8LqTHigAnUygflNpqnMZKXSD-azc2o8W-m4R4_Slp4VP6E6y1a03zcXugMeITlDyUBdEw/pub?gid=972364105&single=true&output=csv' ;
     
     const container = document.getElementById('zemi-results-container');
     if(!container) return;
