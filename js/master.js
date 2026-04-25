@@ -33,51 +33,100 @@ document.addEventListener('DOMContentLoaded', () => {
 
     container.innerHTML = '<p style="text-align: center; color: #cecece;">現在の希望状況を読み込んでいます...</p>';
 
-    fetch(sheetUrl)
+fetch(sheetUrl)
         .then(response => response.text())
         .then(csvText => {
-            const rows = parseCSV(csvText);
-            let htmlString = '';
+            const allRows = parseCSV(csvText);
+            // ヘッダーを除外して、第1希望（B列/index 1）の多い順に並び替え
+            const dataRows = allRows.slice(1)
+                .filter(row => row[0]) // 分野名が空の行を除外
+                .sort((a, b) => Number(b[1]) - Number(a[1]));
 
-            // 1行目（見出し）を飛ばしてループ
-            for(let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                // A〜D列（4列分）があるかチェック
-                if(row.length < 4 || !row[0]) continue;
+            let top3Html = '';
+            let otherHtml = '';
 
-                const fieldName = row[0]; // A列：分野名
-                const first = row[1] || 0; // B列：第1希望
-                const second = row[2] || 0; // C列：第2希望
-                const third = row[3] || 0; // D列：第3希望
+            dataRows.forEach((row, index) => {
+                const fieldName = row[0];
+                const first = row[1] || 0;
+                const second = row[2] || 0;
+                const third = row[3] || 0;
 
-                // シンプルなカード形式で表示
-                htmlString += `
+                const cardHtml = `
                 <div class="zemi-card-sp" style="margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid #555; border-radius: 8px; padding: 1rem;">
                     <h3 style="margin: 0 0 0.8rem 0; font-size: 1.1rem; color: #fff; border-left: 4px solid #91b825; padding-left: 0.8rem;">
-                        ${fieldName}
+                        ${index < 3 ? '👑 ' : ''}${fieldName}
                     </h3>
-                    
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
-                            第1希望: ${first}人
-                        </span>
-                        <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
-                            第2希望: ${second}人
-                        </span>
-                        <span style="background: #c57f2e; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
-                            第3希望: ${third}人
-                        </span>
+                        <span style="background: #e6b422; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第1希望: ${first}人</span>
+                        <span style="background: #999; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第2希望: ${second}人</span>
+                        <span style="background: #c57f2e; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">第3希望: ${third}人</span>
                     </div>
                 </div>`;
+
+                if (index < 3) {
+                    top3Html += cardHtml;
+                } else {
+                    otherHtml += cardHtml;
+                }
+            });
+
+            // HTMLの組み立て
+            let finalHtml = top3Html;
+
+            // 4位以降がある場合のみ、隠しエリアとボタンを追加
+            if (otherHtml !== '') {
+                finalHtml += `
+                    <div id="other-zemi-fields" style="display: none;">${otherHtml}</div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <button id="toggle-zemi-btn" class="btn" style="font-size: 0.9rem; padding: 0.5rem 1rem; background: #555;">
+                            すべての希望分野を表示
+                        </button>
+                    </div>
+                `;
             }
-            
-            container.innerHTML = htmlString || '<p style="text-align: center; color: #cecece;">現在、希望分野はまだありません。</p>';
+
+            container.innerHTML = finalHtml || '<p style="text-align: center; color: #cecece;">現在、希望分野はまだありません。</p>';
+
+            // ボタンのクリックイベント設定
+            const toggleBtn = document.getElementById('toggle-zemi-btn');
+            const otherFields = document.getElementById('other-zemi-fields');
+            if (toggleBtn && otherFields) {
+                toggleBtn.addEventListener('click', () => {
+                    const isHidden = otherFields.style.display === 'none';
+                    otherFields.style.display = isHidden ? 'block' : 'none';
+                    toggleBtn.textContent = isHidden ? '表示を戻す' : 'すべての希望分野を表示';
+                });
+            }
         })
         .catch(error => {
             console.error('Error:', error);
             container.innerHTML = '<p style="text-align: center; color: #cecece;">データの読み込みに失敗しました。</p>';
         });
 });
+
+// CSVパース関数
+function parseCSV(str) {
+    const result = [];
+    let row = [], inQuotes = false, val = "";
+    for (let i = 0; i < str.length; i++) {
+        let c = str[i];
+        if (inQuotes) {
+            if (c === '"' && str[i+1] === '"') { val += '"'; i++; }
+            else if (c === '"') { inQuotes = false; }
+            else { val += c; }
+        } else {
+            if (c === '"') { inQuotes = true; }
+            else if (c === ',') { row.push(val); val = ""; }
+            else if (c === '\n' || c === '\r') {
+                row.push(val); val = ""; result.push(row); row = [];
+                if (c === '\r' && str[i+1] === '\n') i++;
+            }
+            else { val += c; }
+        }
+    }
+    if (val || row.length > 0) { row.push(val); result.push(row); }
+    return result;
+}
 
 // CSVパース関数（ここは共通）
 function parseCSV(str) {
