@@ -261,13 +261,13 @@ body.r6-sp {
 }
 .detail-sp th ,.detail-sp td {
   text-align: left;
-  padding: 12px 20px 12px 0;
+  padding: 12px 20px;
   vertical-align: top;
   color: #cecece;
 }
 .detail-sp th {
   width: 110px;
-  text-align: center;
+  /*text-align: center;
   font-weight: normal;
   white-space: nowrap;
   color: #cecece;
