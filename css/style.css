@@ -1043,7 +1043,209 @@ body.r6-sp {
    
     
     /*特設ページ*/
+
+    /* =========================================
+   特設ページ：提案・希望分野フォーム用デザイン
+========================================= */
+
+/* フォーム全体の枠組み */
+.form-wrapper {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* 各質問の白背景カード（ダーク背景の上で読みやすく） */
+.form-section {
+    background: #ffffff;
+    color: #333;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* 質問見出し（理ゼミのゴールドを使用） */
+.form-section h3 {
+    font-size: 1.4rem;
+    border-bottom: 2px solid #C0A313;
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* 入力欄・プルダウンの共通デザイン */
+.form-section label {
+    font-weight: bold;
+    color: #46454B;
+    display: block;
+    margin-top: 1.5rem;
+}
+.form-section input[type="text"], 
+.form-section textarea, 
+.form-section select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: #fafafa;
+}
+.form-section input[type="text"]:focus, 
+.form-section textarea:focus, 
+.form-section select:focus {
+    outline: none;
+    border-color: #91B825; /* フォーカス時にグリーン */
+    background-color: #fff;
+}
+.form-section textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* アコーディオン（既存の .accordion-header にデザインを寄せています） */
+.form-section details {
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.form-section summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+    outline: none;
+    background: #91b825; /* 理ゼミグリーン */
+    color: #fff;
+    padding: 1rem 1.2rem;
+    font-size: 1.2rem;
+}
+.form-section summary::-webkit-details-marker {
+    display: none;
+}
+.form-section summary::before {
+    content: "＋ ";
+    font-weight: bold;
+}
+.form-section details[open] summary::before {
+    content: "－ ";
+}
+.form-section details > div {
+    padding: 15px;
+    background: #fafafa;
+}
+
+/* 分野を選択するボタン */
+.field-btn {
+    display: inline-block;
+    background: #fff;
+    border: 2px solid #91b825;
+    color: #91b825;
+    padding: 8px 15px;
+    margin: 5px 5px 10px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    font-family: inherit;
+}
+.field-btn:hover:not(:disabled) {
+    background: #bed778;
+    color: #fff;
+}
+
+/* 💡「自分が提案した分野」の特別な目立つエリア */
+.my-proposal-box {
+    background: #fffcf9;
+    border: 2px solid #C0A313; /* ゴールドの枠線 */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.box-label {
+    font-weight: bold;
+    color: #C0A313;
+    display: block;
+    margin-bottom: 5px;
+}
+.proposal-btn {
+    background: #C0A313;
+    border-color: #C0A313;
+    color: #fff;
+}
+.proposal-btn:hover:not(:disabled) {
+    background: #C8A978;
+}
+.proposal-btn:disabled {
+    background: #e0e0e0;
+    border-color: #bdbdbd;
+    color: #9e9e9e;
+    cursor: not-allowed;
+}
+
+/* 選択状況を表示するエリア */
+.status-box {
+    background: #f0f0f0;
+    border-left: 5px solid #2A91D3; /* ブルーのアクセント */
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 30px;
+}
+.status-box p {
+    margin: 5px 0;
+}
+.status-box span {
+    font-weight: bold;
+    color: #2A91D3;
+    font-size: 1.1rem;
+}
+.clear-btn {
+    font-size: 0.8rem;
+    background: #77767F;
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+/* 一番下のGoogleフォーム送信ボタン（既存の .btn をベースに拡張） */
+.submit-btn {
+    display: block;
+    width: 100%;
+    background-color: #C0A313;
+    color: #fff;
+    padding: 18px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .5s;
+    text-align: center;
+    margin-top: 1rem;
+}
+.submit-btn:hover {
+    background-color: #C8A978;
+}
     
+
+
+
+
+
+
+
+
+
+
+
     
     /*フッター*/
 }
