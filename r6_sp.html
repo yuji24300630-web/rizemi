@@ -35,17 +35,7 @@
         <link rel="stylesheet" href="./css/style.css?v=29">
 
         <style>
-            body.r6-sp .form-wrapper .genre-btn {
-                transition: all 0.2s ease !important;
-            }
-            body.r6-sp .form-wrapper .genre-btn.active {
-                background: #91b825 !important;
-                color: #ffffff !important;
-                border: 2px solid #558b2f !important;
-                font-weight: bold !important;
-            }
-
-            /* 💡 追加：右下の追従申し込みボタンのCSS */
+            /* 💡 右下の追従申し込みボタンのCSS */
             .floating-apply-btn {
                 position: fixed;
                 bottom: 25px;
@@ -113,7 +103,6 @@
         <a href="#detail-sp">INFO</a>
         <a href="#zemi-sp">ゼミ班</a>
         <a href="#event-sp">EVENT</a>
-        <a href="#apply-sp" style="color: #ff6b6b; font-weight: bold;">申し込み</a>
     </div>
 
     <table class="detail-sp" id="detail-sp">
@@ -151,7 +140,7 @@
             <div style="padding: 1rem 0; text-align: center;">
                 <p style="font-size: 1rem; line-height: 2; color: #cecece; margin-bottom: 1.5rem;">
                     希望調査をもとに、以下のゼミ班を開講することが決定しました！<br>
-                    下部のフォームにて、参加したい班を選択してください。
+                    申し込みフォームにて、参加したい班を選択してください。
                 </p>
             </div>
 
@@ -194,15 +183,20 @@
     </div>
 
     <div class="speace-sp" id="apply-sp">
-        <h2 class="zemi-title-sp" style="color: #ff6b6b; border-color: #ff6b6b;">申し込み</h2>
-        <section class="event-sp" style="text-align: center; padding: 2rem 0;">
-            <p style="font-size: 1rem; line-height: 2; color: #cecece; margin-bottom: 2rem;">
-                以下のフォームより参加申し込みをお願いいたします。<br>
-                ※フォームがうまく表示されない場合は<a href="#" style="color: #4da6ff; text-decoration: underline;">こちら</a>から
-            </p>
+        <div class="zemi-title-wrap" style="position: relative; max-width: 800px; width: 90%; margin: 0 auto;">
+            <h2 class="zemi-title-sp" style="width: 100%; margin: 0;">申し込み</h2>
+        </div>
+        
+        <section class="event-sp">
+            <div style="padding: 1rem 0; text-align: center;">
+                <p style="font-size: 1rem; line-height: 2; color: #cecece; margin-bottom: 1.5rem;">
+                    以下のフォームより参加申し込みをお願いいたします。<br>
+                    ※フォームがうまく表示されない場合は<a href="#" style="color: #4da6ff; text-decoration: underline;">こちら</a>から
+                </p>
+            </div>
             
             <div style="width: 100%; max-width: 800px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden;">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScDUMMY_FORM_ID/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込み中…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSddast-Znk9_XzlTk09BExG_VDkJNP_M3PYQPZHEFO4AYBePg/viewform?usp=header" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込み中…</iframe>
             </div>
             
         </section>
@@ -244,18 +238,8 @@
                     }
                 ]
             });
-
-            // 💡 追加：ページ内リンク（右下のボタン等）を押した時に、ゆっくりスクロールする処理
-            $('a[href^="#"]').click(function() {
-                var speed = 400; // スクロールのスピード（ミリ秒）
-                var href= $(this).attr("href");
-                var target = $(href == "#" || href == "" ? 'html' : href);
-                // ヘッダーの高さ分（約60px）少し上にずらして止まるように調整
-                var position = target.offset().top - 60; 
-                $('body,html').animate({scrollTop:position}, speed, 'swing');
-                return false;
-            });
         });
+        /* 💡 ヘッダー被りを引き起こしていた余計なスクロール処理を削除しました */
     </script>
 </body>
 </html>
