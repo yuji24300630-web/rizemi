@@ -175,7 +175,8 @@ body.r6-sp {
 /* ページ内リンクで飛んだ時にヘッダーに隠れないようにする設定 */
 #detail-sp,
 #zemi-sp,
-#event-sp {
+#event-sp,
+#apply-sp {
     scroll-margin-top: 120px; 
 }
 
@@ -284,10 +285,11 @@ body.r6-sp {
     .zemi-grid-container {
         grid-template-columns: 1fr 1fr; /* PC版のみ横2列 */
         gap: 20px;
+        align-items: start; /* 💡 隣のカードが伸びるのを防ぐ設定 */
     }
 }
 
-/* 💡 ゼミ班の開閉ボタン（アコーディオン）のCSS（HTMLから移動） */
+/* ゼミ班の開閉ボタン（アコーディオン）のCSS */
 .zemi-details summary {
     cursor: pointer;
     outline: none;
@@ -362,7 +364,7 @@ body.r6-sp {
     transform: translateY(20%) rotate(-45deg);
 }
 
-/* 💡 右下の追従申し込みボタン（HTMLから移動） */
+/* 右下の追従申し込みボタン */
 .floating-apply-btn {
     position: fixed;
     bottom: 25px;
@@ -387,7 +389,7 @@ body.r6-sp {
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
 }
 
-/* 💡 PC版（画面幅768px以上）の時に申し込みボタンを大きくする設定 */
+/* PC版（画面幅768px以上）の時に申し込みボタンを大きくする設定 */
 @media screen and (min-width: 768px) {
     .floating-apply-btn {
         bottom: 40px;
@@ -400,7 +402,7 @@ body.r6-sp {
 }
 
 
-/* 特設フッター 💡白に近い灰色に修正 */
+/* 特設フッター */
 .page-footer-sp {
     background-color: #e6e6e6; /* 白寄りの優しい灰色 */
     color: #333333;
@@ -410,7 +412,7 @@ body.r6-sp {
     color: #333333;
 }
 .page-footer-sp .info a:hover {
-    color: #91b825; /* 💡リンクホバー時も優しい緑に統一 */
+    color: #91b825; /* リンクホバー時も優しい緑に統一 */
 }
 /* コピーライト部分 */
 .page-footer-sp .copyright {
