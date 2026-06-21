@@ -1178,3 +1178,20 @@ body.r6-sp .top-sp a:hover {
         width: 90%;
     }
 }
+/* =========================================================
+   ゼミ班の「扱う本の例」の画像レイアウト
+========================================================= */
+.book-images {
+    display: flex;
+    justify-content: center; /* 1冊なら中央、2冊なら中央寄りで横並び */
+    gap: 15px; /* 画像同士の隙間 */
+    margin-top: 15px;
+}
+.book-images img {
+    width: 45%; /* 横に2つ並ぶように幅を制限 */
+    max-width: 140px; /* PCなどで大きくなりすぎないように最大幅を設定 */
+    height: auto;
+    border-radius: 4px; /* 角を少し丸く */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* 本に少し影をつける */
+    object-fit: cover;
+}
